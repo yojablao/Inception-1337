@@ -1,0 +1,80 @@
+
+
+services:
+  mariadb:
+    image: mariadb:inception
+    build: ./requirements/mariadb
+    container_name: mariadb
+    networks:
+      - inception
+    env_file:
+      - .env
+    volumes:
+      - mariadb:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  wordpress:
+    image: wordpress:inception
+    build: ./requirements/wordpress
+    container_name: wordpress
+    networks:
+      - inception
+    env_file:
+      - .env
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "ps aux | grep php-fpm | grep -v grep"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+    restart: unless-stopped
+
+
+  nginx:
+    image: nginx:inception
+    build: ./requirements/nginx
+    container_name: nginx
+    networks:
+      - inception
+    env_file:
+      - .env
+    ports:
+      - 443:443
+    depends_on:
+      wordpress:
+        condition: service_healthy
+    volumes:
+      - wordpress:/var/www/html
+    restart: always
+
+
+networks:
+  inception:
+    name: inception
+    driver: bridge
+
+
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/yojablao/data/wordpress
+
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/yojablao/data/mariadb
