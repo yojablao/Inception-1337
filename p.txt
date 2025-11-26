@@ -1,0 +1,183 @@
+[0;34mBuilding containers...[0m
+#0 building with "default" instance using docker driver
+
+#1 [mariadb internal] load build definition from Dockerfile
+#1 transferring dockerfile: 254B done
+#1 DONE 0.0s
+
+#2 [mariadb internal] load metadata for docker.io/library/debian:bookworm
+#2 DONE 0.3s
+
+#3 [mariadb internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [mariadb 1/4] FROM docker.io/library/debian:bookworm@sha256:3d957cd5e0693cf44cbb65aa43033fb701443df6b0afa4dcc9293c9bb7a258f9
+#4 DONE 0.0s
+
+#5 [mariadb internal] load build context
+#5 transferring context: 60B done
+#5 DONE 0.0s
+
+#6 [mariadb 2/4] RUN apt update && apt upgrade -y &&     apt install mariadb-server mariadb-client netcat-traditional -y
+#6 CACHED
+
+#7 [mariadb 3/4] COPY ./tools/m_db.sh .
+#7 CACHED
+
+#8 [mariadb 4/4] RUN chmod +x ./m_db.sh
+#8 CACHED
+
+#9 [mariadb] exporting to image
+#9 exporting layers done
+#9 writing image sha256:be1efa57d8efdce273f5c4b235f3535d6e916fa427c09ec32c59264605a24475 done
+#9 naming to docker.io/library/mariadb:inception done
+#9 DONE 0.0s
+
+#10 [wordpress internal] load build definition from Dockerfile
+#10 transferring dockerfile: 297B done
+#10 DONE 0.0s
+
+#2 [wordpress internal] load metadata for docker.io/library/debian:bookworm
+#2 DONE 0.5s
+
+#11 [wordpress internal] load .dockerignore
+#11 transferring context: 2B done
+#11 DONE 0.0s
+
+#4 [wordpress 1/5] FROM docker.io/library/debian:bookworm@sha256:3d957cd5e0693cf44cbb65aa43033fb701443df6b0afa4dcc9293c9bb7a258f9
+#4 DONE 0.0s
+
+#12 [wordpress internal] load build context
+#12 transferring context: 59B done
+#12 DONE 0.0s
+
+#13 [wordpress 2/5] RUN apt-get update && apt-get install -y     php     php-fpm     curl     php-mysql     netcat-traditional    mariadb-client
+#13 CACHED
+
+#14 [wordpress 3/5] WORKDIR /var/www/html
+#14 CACHED
+
+#15 [wordpress 4/5] COPY ./tools/w_p.sh/ .
+#15 CACHED
+
+#16 [wordpress 5/5] RUN chmod +x w_p.sh
+#16 CACHED
+
+#17 [wordpress] exporting to image
+#17 exporting layers done
+#17 writing image sha256:992040e18caedb7599eab2947baf46d31a8012c8168572d4d6668c5690178f05 done
+#17 naming to docker.io/library/wordpress:inception done
+#17 DONE 0.0s
+
+#18 [nginx internal] load build definition from Dockerfile
+#18 transferring dockerfile: 554B done
+#18 DONE 0.0s
+
+#2 [nginx internal] load metadata for docker.io/library/debian:bookworm
+#2 DONE 0.7s
+
+#19 [nginx internal] load .dockerignore
+#19 transferring context: 2B done
+#19 DONE 0.0s
+
+#4 [nginx 1/7] FROM docker.io/library/debian:bookworm@sha256:3d957cd5e0693cf44cbb65aa43033fb701443df6b0afa4dcc9293c9bb7a258f9
+#4 DONE 0.0s
+
+#20 [nginx internal] load build context
+#20 transferring context: 61B done
+#20 DONE 0.0s
+
+#21 [nginx 5/7] RUN chmod 600 /etc/nginx/ssl/server_ca.key
+#21 CACHED
+
+#22 [nginx 3/7] RUN mkdir -p /etc/nginx/ssl
+#22 CACHED
+
+#23 [nginx 2/7] RUN apt update && apt upgrade -y && apt install nginx openssl -y
+#23 CACHED
+
+#24 [nginx 6/7] RUN chmod 644 /etc/nginx/ssl/server_ca.crt
+#24 CACHED
+
+#25 [nginx 4/7] RUN openssl req -x509 -nodes -days 180 -newkey rsa:2048     -keyout /etc/nginx/ssl/server_ca.key -out /etc/nginx/ssl/server_ca.crt     -subj "/C=MA/ST=Khnifra-beniMellal/L=Khouribga/O=1337/OU=IT/CN=yojablao.42.fr"
+#25 CACHED
+
+#26 [nginx 7/7] COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+#26 CACHED
+
+#27 [nginx] exporting to image
+#27 exporting layers done
+#27 writing image sha256:3fcd76e57d66ab38080c562af37b49356a3604ede849ff974de26283512d26ef done
+#27 naming to docker.io/library/nginx:inception done
+#27 DONE 0.0s
+#0 building with "default" instance using docker driver
+
+#1 [mariadb internal] load build definition from Dockerfile
+#1 transferring dockerfile: 254B done
+#1 DONE 0.0s
+
+#2 [mariadb internal] load metadata for docker.io/library/debian:bookworm
+#2 DONE 0.2s
+
+#3 [mariadb internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [mariadb 1/4] FROM docker.io/library/debian:bookworm@sha256:3d957cd5e0693cf44cbb65aa43033fb701443df6b0afa4dcc9293c9bb7a258f9
+#4 DONE 0.0s
+
+#5 [mariadb internal] load build context
+#5 transferring context: 60B done
+#5 DONE 0.0s
+
+#6 [mariadb 2/4] RUN apt update && apt upgrade -y &&     apt install mariadb-server mariadb-client netcat-traditional -y
+#6 CACHED
+
+#7 [mariadb 3/4] COPY ./tools/m_db.sh .
+#7 CACHED
+
+#8 [mariadb 4/4] RUN chmod +x ./m_db.sh
+#8 CACHED
+
+#9 [mariadb] exporting to image
+#9 exporting layers done
+#9 writing image sha256:be1efa57d8efdce273f5c4b235f3535d6e916fa427c09ec32c59264605a24475 0.0s done
+#9 naming to docker.io/library/mariadb:inception done
+#9 DONE 0.0s
+
+#10 [wordpress internal] load build definition from Dockerfile
+#10 transferring dockerfile: 297B done
+#10 DONE 0.0s
+
+#2 [wordpress internal] load metadata for docker.io/library/debian:bookworm
+#2 DONE 0.4s
+
+#11 [wordpress internal] load .dockerignore
+#11 transferring context: 2B done
+#11 DONE 0.0s
+
+#4 [wordpress 1/5] FROM docker.io/library/debian:bookworm@sha256:3d957cd5e0693cf44cbb65aa43033fb701443df6b0afa4dcc9293c9bb7a258f9
+#4 DONE 0.0s
+
+#12 [wordpress internal] load build context
+#12 transferring context: 59B done
+#12 DONE 0.0s
+
+#13 [wordpress 2/5] RUN apt-get update && apt-get install -y     php     php-fpm     curl     php-mysql     netcat-traditional    mariadb-client
+#13 CACHED
+
+#14 [wordpress 3/5] WORKDIR /var/www/html
+#14 CACHED
+
+#15 [wordpress 4/5] COPY ./tools/w_p.sh/ .
+#15 CACHED
+
+#16 [wordpress 5/5] RUN chmod +x w_p.sh
+#16 CACHED
+
+#17 [wordpress] exporting to image
+#17 exporting layers done
+#17 writing image sha256:992040e18caedb7599eab2947baf46d31a8012c8168572d4d6668c5690178f05 done
+#17 naming to docker.io/library/wordpress:inception done
+#17 DONE 0.0s

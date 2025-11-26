@@ -7,5 +7,5 @@ COPY ./tools/m_db.sh .
 
 RUN chmod +x ./m_db.sh
 
-EXPOSE 3306
+# EXPOSE 3306
 ENTRYPOINT ["./m_db.sh"]

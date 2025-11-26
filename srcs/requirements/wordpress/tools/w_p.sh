@@ -14,11 +14,10 @@ EOF
     return 0
 }
 
-echo "Administrator username '$WP_ADMIN_LOGIN' is valid."
 
 echo "Waiting for database to be ready..."
 
-echo "Setting up WordPress directory..."
+echo "Setting up WordPress directory..." 
 mkdir -p /var/www/html
 cd /var/www/html
 
@@ -71,4 +70,4 @@ touch /var/www/html/.wp_installed
 
 echo "Starting PHP-FPM in foreground mode..."
 exec /usr/sbin/php-fpm8.2 -F
-
+    
