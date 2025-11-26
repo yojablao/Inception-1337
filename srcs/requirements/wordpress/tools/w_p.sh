@@ -39,7 +39,6 @@ ADMIN_LOWERCASE="${WP_USER_LOGIN,,}"
         --role=author \
         --user_pass="$WP_USER_PASS" \
         --allow-root
-    /makeit.sh
 fi
 
 chown -R www-data:www-data /var/www/html

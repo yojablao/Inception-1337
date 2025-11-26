@@ -10,10 +10,10 @@ RUN apt-get install -y   php \
 
 WORKDIR /var/www/html
 COPY ./tools/w_p.sh/ /w_p.sh
-COPY ./tools/makeit.sh makeit.sh
 
 
-RUN chmod +x /w_p.sh makeit.sh
+
+RUN chmod +x /w_p.sh 
 
 
 
